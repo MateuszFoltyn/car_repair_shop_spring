@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class RestCar {
     private Long id;
-    private String mark;
+    private String brand;
     private String model;
     private String type;
     private String color;

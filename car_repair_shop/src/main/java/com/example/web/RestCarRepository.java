@@ -24,7 +24,7 @@ public class RestCarRepository {
 
     public List<RestCar> findByMark(String mark) {
         return restCarList.stream()
-                .filter(t -> t.getMark().equals(mark))
+                .filter(t -> t.getBrand().equals(mark))
                 .collect(Collectors.toList());
     }
 
