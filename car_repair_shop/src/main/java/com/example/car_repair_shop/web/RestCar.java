@@ -1,4 +1,4 @@
-package com.example.web;
+package com.example.car_repair_shop.web;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

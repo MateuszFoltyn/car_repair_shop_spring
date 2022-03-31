@@ -1,13 +1,12 @@
-package com.example.web;
+package com.example.car_repair_shop.web;
 
 
-import com.example.service.RestCarService;
+import com.example.car_repair_shop.service.RestCarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,13 +23,18 @@ public class CarRestController {
 
 
     @GetMapping("car/{brand}")
-    public ResponseEntity<List<RestCar>> getBrand (@PathVariable String brand) {
+    public ResponseEntity<List<RestCar>> getBrand(@PathVariable String brand) {
         return ResponseEntity.ok(restCarService.findByBrand(brand));
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<RestCar> save(@RequestBody RestCar restCar) {
         return ResponseEntity.ok(restCarService.save(restCar));
+    }
+
+    @DeleteMapping
+    public void delete(@RequestBody Long id) {
+        restCarService.deleteById(id);
     }
 
 }

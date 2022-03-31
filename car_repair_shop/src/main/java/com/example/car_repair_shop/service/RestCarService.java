@@ -1,14 +1,12 @@
-package com.example.service;
+package com.example.car_repair_shop.service;
 
 
-import com.example.web.RestCar;
-import com.example.web.RestCarRepository;
+import com.example.car_repair_shop.web.RestCar;
+import com.example.car_repair_shop.web.RestCarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
