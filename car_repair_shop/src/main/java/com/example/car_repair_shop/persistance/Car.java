@@ -1,4 +1,4 @@
-package com.example.car_repair_shop.web;
+package com.example.car_repair_shop.persistance;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RestCar {
+public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +24,8 @@ public class RestCar {
     private Integer doorsNumber;
     private Integer fuelConsumption;
     private String fuelType;
+
+    @OneToOne
+    private Customer customer;
 
 }

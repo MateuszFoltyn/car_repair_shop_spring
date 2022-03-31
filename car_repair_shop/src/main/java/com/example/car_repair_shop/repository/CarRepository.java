@@ -1,12 +1,15 @@
-package com.example.car_repair_shop.web;
+package com.example.car_repair_shop.repository;
 
 
+import com.example.car_repair_shop.persistance.Car;
+import com.example.car_repair_shop.persistance.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface RestCarRepository extends JpaRepository<RestCar, Long> {
-    List<RestCar> findByBrand(String brand);
+public interface CarRepository extends JpaRepository<Car, Long> {
+    List<Car> findByBrand(String brand);
+    List<Car> findByCustomer(Customer customer);
 
 
 
@@ -21,24 +24,24 @@ public interface RestCarRepository extends JpaRepository<RestCar, Long> {
 
 //
 //    private static Long idSequence = 1L;
-//    private final List<RestCar> restCarList = new ArrayList<>();
+//    private final List<Car> restCarList = new ArrayList<>();
 //
-//    public RestCar add(RestCar restCar) {
+//    public Car add(Car restCar) {
 //        restCar.setId(idSequence++);
 //        return restCar;
 //    }
 //
-//    public List<RestCar> findAll() {
+//    public List<Car> findAll() {
 //        return new ArrayList<>(restCarList);
 //    }
 //
-//    public List<RestCar> findByMark(String mark) {
+//    public List<Car> findByMark(String mark) {
 //        return restCarList.stream()
 //                .filter(t -> t.getBrand().equals(mark))
 //                .collect(Collectors.toList());
 //    }
 //
-//    public RestCar findById(Long id) {
+//    public Car findById(Long id) {
 //        return restCarList.stream()
 //                .filter(t -> t.getId() == id)
 //                .findFirst().orElseThrow(RuntimeException::new);
