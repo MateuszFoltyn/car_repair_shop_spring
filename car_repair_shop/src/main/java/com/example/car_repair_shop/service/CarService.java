@@ -30,10 +30,10 @@ public class CarService {
     public Car findById(Long id) {
         return restCarRepository.findById(id).orElseThrow();
     }
+
     public List<Car> findByCustomer(Customer customer) {
         return restCarRepository.findByCustomer(customer);
     }
-
 
     public void deleteById(Long id) {
         restCarRepository.deleteById(id);
