@@ -25,6 +25,10 @@ public class CustomerService {
         return customerRepository.findById(id).orElseThrow();
     }
 
+    public List<Customer> findByBrand(String brand) {
+        return customerRepository.
+    }
+
     public List<Customer> findBySecondName(String secondName) {
         return customerRepository.findBySecondName(secondName);
     }

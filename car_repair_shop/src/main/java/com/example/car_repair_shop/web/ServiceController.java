@@ -3,6 +3,7 @@ package com.example.car_repair_shop.web;
 
 import com.example.car_repair_shop.enumerated.ServiceType;
 import com.example.car_repair_shop.persistance.Car;
+import com.example.car_repair_shop.persistance.Customer;
 import com.example.car_repair_shop.persistance.Service;
 import com.example.car_repair_shop.service.ServiceService;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/service")
+@RequestMapping("/services")
 public class ServiceController {
 
     private final ServiceService serviceService;
@@ -29,9 +30,20 @@ public class ServiceController {
         return ResponseEntity.ok(serviceService.findByType(serviceType));
     }
 
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Service> getId(@PathVariable Long id) {
+        return ResponseEntity.ok(serviceService.findById(id));
+    }
+
     @PostMapping
     public ResponseEntity<Service> save(@RequestBody Service service) {
         return ResponseEntity.ok(serviceService.save(service));
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        serviceService.deleteById(id);
     }
 
 }

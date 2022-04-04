@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/customer")
+@RequestMapping("/customers")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -20,9 +20,14 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.findAll());
     }
 
-    @GetMapping("/secondName")
+    @GetMapping("/{secondName}")
     public ResponseEntity<List<Customer>> getSecondName(@PathVariable String secondName) {
         return ResponseEntity.ok(customerService.findBySecondName(secondName));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Customer> getId(@PathVariable Long id) {
+        return ResponseEntity.ok(customerService.findById(id));
     }
 
     @PostMapping

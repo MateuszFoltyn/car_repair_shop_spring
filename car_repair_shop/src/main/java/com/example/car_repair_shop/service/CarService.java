@@ -14,6 +14,7 @@ import java.util.List;
 public class CarService {
 
     private final CarRepository restCarRepository;
+    private final CustomerService customerService;
 
     public Car save(Car car) {
         return restCarRepository.save(car);
@@ -31,12 +32,11 @@ public class CarService {
         return restCarRepository.findById(id).orElseThrow();
     }
 
-    public List<Car> findByCustomer(Customer customer) {
-        return restCarRepository.findByCustomer(customer);
+    public List<Car> findByCustomerId(Long customerId) {
+        return restCarRepository.findByCustomer(customerService.findById(customerId));
     }
 
     public void deleteById(Long id) {
         restCarRepository.deleteById(id);
     }
-
 }
