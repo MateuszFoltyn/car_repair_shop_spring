@@ -8,8 +8,10 @@ import com.example.car_repair_shop.persistance.Service;
 import com.example.car_repair_shop.service.ServiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -37,8 +39,13 @@ public class ServiceController {
     }
 
     @PostMapping
-    public ResponseEntity<Service> save(@RequestBody Service service) {
+    public ResponseEntity<Service> save(@Valid @RequestBody Service service) {
         return ResponseEntity.ok(serviceService.save(service));
+    }
+
+    @PostMapping("/{carId}/service/{serviceId}")
+    public ResponseEntity<Service> serviceToDo(@PathVariable Long carId, @PathVariable Long serviceId) {
+        return ResponseEntity.ok(serviceService.serviceToDo(carId, serviceId));
     }
 
     @DeleteMapping("/{id}")

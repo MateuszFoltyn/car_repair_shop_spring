@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,8 +31,13 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.findById(id));
     }
 
+    @GetMapping("/cars/{brand}")
+    public ResponseEntity<List<Customer>> findByBrand(@PathVariable String brand) {
+        return ResponseEntity.ok(customerService.findByBrand(brand));
+    }
+
     @PostMapping
-    public ResponseEntity<Customer> save(@RequestBody Customer customer) {
+    public ResponseEntity<Customer> save(@Valid @RequestBody Customer customer) {
         return ResponseEntity.ok(customerService.save(customer));
     }
 

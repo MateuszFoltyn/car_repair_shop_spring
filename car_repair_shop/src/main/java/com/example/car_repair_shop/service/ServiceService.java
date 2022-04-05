@@ -1,6 +1,9 @@
 package com.example.car_repair_shop.service;
 
+import com.example.car_repair_shop.persistance.Car;
+import com.example.car_repair_shop.persistance.Customer;
 import com.example.car_repair_shop.persistance.Service;
+import com.example.car_repair_shop.repository.CarRepository;
 import com.example.car_repair_shop.repository.ServiceRepository;
 import com.example.car_repair_shop.enumerated.ServiceType;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +17,7 @@ import java.util.List;
 public class ServiceService {
 
     private final ServiceRepository serviceRepository;
+    private final CarService carService;
 
     public List<Service> findByType(ServiceType serviceType) {
         return serviceRepository.findByType(serviceType);
@@ -29,6 +33,13 @@ public class ServiceService {
 
     public Service save(Service service) {
         return serviceRepository.save(service);
+    }
+
+    public Service serviceToDo(Long carId, Long serviceId) {
+        Service service = findById(serviceId);
+        Car car = carService.findById(carId);
+        service.setCar(car);
+        return save(service);
     }
 
     public void deleteById(Long id) {

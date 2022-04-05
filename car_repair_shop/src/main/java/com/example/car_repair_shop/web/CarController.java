@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -40,8 +41,13 @@ public class CarController {
     }
 
     @PostMapping
-    public ResponseEntity<Car> save(@RequestBody Car car) {
+    public ResponseEntity<Car> save(@Valid @RequestBody Car car) {
         return ResponseEntity.ok(carService.save(car));
+    }
+
+    @PostMapping("/{carId}/customer/{customerId}")
+    public ResponseEntity<Car> sell(@PathVariable Long carId, @PathVariable Long customerId) {
+        return ResponseEntity.ok(carService.sell(carId, customerId));
     }
 
     @DeleteMapping("/{id}")
