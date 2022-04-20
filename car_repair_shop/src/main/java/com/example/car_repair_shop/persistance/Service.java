@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+
 
 @Entity
 @Data

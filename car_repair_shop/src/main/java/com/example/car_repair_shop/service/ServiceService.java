@@ -1,9 +1,7 @@
 package com.example.car_repair_shop.service;
 
 import com.example.car_repair_shop.persistance.Car;
-import com.example.car_repair_shop.persistance.Customer;
 import com.example.car_repair_shop.persistance.Service;
-import com.example.car_repair_shop.repository.CarRepository;
 import com.example.car_repair_shop.repository.ServiceRepository;
 import com.example.car_repair_shop.enumerated.ServiceType;
 import lombok.RequiredArgsConstructor;

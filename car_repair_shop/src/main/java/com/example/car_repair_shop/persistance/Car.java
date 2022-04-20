@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 @Entity
 @Data
@@ -32,5 +31,5 @@ public class Car {
     private String fuelType;
 
     @OneToOne
-    private Customer customer;
+    private User user;
 }

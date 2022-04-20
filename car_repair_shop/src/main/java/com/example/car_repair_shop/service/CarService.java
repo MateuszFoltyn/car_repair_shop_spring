@@ -2,21 +2,18 @@ package com.example.car_repair_shop.service;
 
 
 import com.example.car_repair_shop.persistance.Car;
-import com.example.car_repair_shop.persistance.Customer;
+import com.example.car_repair_shop.persistance.User;
 import com.example.car_repair_shop.repository.CarRepository;
-import com.example.car_repair_shop.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class CarService {
 
     private final CarRepository carRepository;
-    private final CustomerService customerService;
+    private final UserService userService;
 
     public Car save(Car car) {
         return carRepository.save(car);
@@ -35,13 +32,13 @@ public class CarService {
     }
 
     public List<Car> findByCustomerId(Long customerId) {
-        return carRepository.findByCustomer(customerService.findById(customerId));
+        return carRepository.findByCustomer(userService.findById(customerId));
     }
 
     public Car sell(Long carId, Long customerId) {
         Car car = findById(carId);
-        Customer customer = customerService.findById(customerId);
-        car.setCustomer(customer);
+        User user = userService.findById(customerId);
+        car.setUser(user);
         return save(car);
     }
 
