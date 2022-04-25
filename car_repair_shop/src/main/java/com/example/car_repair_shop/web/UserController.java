@@ -40,4 +40,6 @@ public class UserController {
         return ResponseEntity.ok(userService.save(user));
     }
 
+    @GetMapping
+    public ResponseEntity<List<User>> getUsers(@RequestBody)
 }
