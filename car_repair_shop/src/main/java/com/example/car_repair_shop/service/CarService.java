@@ -32,7 +32,7 @@ public class CarService {
     }
 
     public List<Car> findByCustomerId(Long customerId) {
-        return carRepository.findByCustomer(userService.findById(customerId));
+        return carRepository.findByUser(userService.findById(customerId));
     }
 
     public Car sell(Long carId, Long customerId) {

@@ -1,12 +1,16 @@
 package com.example.car_repair_shop.web;
 
+import com.example.car_repair_shop.dto.UserDTO;
+import com.example.car_repair_shop.dto.UserMapper;
 import com.example.car_repair_shop.persistance.User;
 import com.example.car_repair_shop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -14,11 +18,8 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final UserMapper userMapper;
 
-    @GetMapping
-    public ResponseEntity<List<User>> getAll() {
-        return ResponseEntity.ok(userService.findAll());
-    }
 
     @GetMapping("/{secondName}")
     public ResponseEntity<List<User>> getSecondName(@PathVariable String secondName) {
@@ -41,5 +42,15 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getUsers(@RequestBody)
+    public ResponseEntity<List<User>> getAll() {
+        return ResponseEntity.ok(userService.findAll());
+    }
+
+    @GetMapping("/usersdto")
+    public ResponseEntity<List<UserDTO>> getUsers() {
+        return ResponseEntity.ok(userService.findAll()
+                .stream()
+                .map(UserMapper::toDTO)
+                .collect(Collectors.toList()));
+    }
 }
